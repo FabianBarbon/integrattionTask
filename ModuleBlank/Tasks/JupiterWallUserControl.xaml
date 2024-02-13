@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="JupiterPlugin.Tasks.JupiterWallUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:converters="clr-namespace:JupiterPlugin.Converters"
+             xmlns:tile="clr-namespace:JupiterPlugin.Tasks" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <UserControl.Resources>
+        
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/> 
+        
+    </UserControl.Resources>
+
+    <Grid Background="#383838">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="994*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" MinHeight="4" />
+            <RowDefinition Height="auto" MinHeight="26" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        
+        <Separator Grid.Row="2"  Margin="0,25,-4,0" Grid.ColumnSpan="2" />
+        <DockPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,3,0,-3"  >
+            <tile:EntityTree x:Name="tree" Width="242"  />
+            <Grid x:Name="grid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--Panel de lista de layotus-->
+                <Grid x:Name="LayoutGridList" Margin="207,95,24,66" Grid.RowSpan="2" Grid.Row="1"  Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Agrega más RowDefinitions según sea necesario -->
+                    </Grid.RowDefinitions>
+                    <Label Content="Lista de Layouts" Foreground="white" Margin="140,35,0,448"/>
+                    <Button  Click="Add_Layout_Template_Click" Content="+" FontSize="18" HorizontalAlignment="Left" Margin="55,26,0,0" VerticalAlignment="Top" Height="29"  Width="30" RenderTransformOrigin="5.15,0.383" >
+                    </Button>
+                    <Button  Click="Remove_layout_template_Click" Content="-" FontSize="18"  HorizontalAlignment="Left" Margin="5,26,0,0" VerticalAlignment="Top" Height="29"  Width="30" RenderTransformOrigin="5.15,0.383" >
+                    </Button>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-3,64,0,88" Height="250" />
+                    <Button  Background="Gray" Foreground="white" Content="Guardar Layout" HorizontalAlignment="Left" Margin="0,325,0,0" VerticalAlignment="Top" Height="26" Width="102" Click="Save_Layout_Click" RenderTransformOrigin="0.271,-0.868"/>
+                    <Button  Background="Gray" Foreground="white" Content="Aplicar Layout" HorizontalAlignment="Left" Margin="132,325,0,0" VerticalAlignment="Top" Height="26" Width="102" Click="Apply_Layout_Click" RenderTransformOrigin="0.271,-0.868"/>
+
+                    <ListBox x:Name="listBox" Height="250" Margin="0,61,0,198" />
+                </Grid>
+                <!--end Panel de lista de layotus-->
+                <!--Panel grilla dinamica-->
+                <Grid x:Name="LayoutGrid" Margin="17,197,330,30" Grid.RowSpan="2" Grid.Row="1"  Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="600"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <!--End grilla dinamica-->
+            </Grid>
+
+        </DockPanel>
+        <!--Panel de Muro y layout info -->
+        <DockPanel Grid.Row="3"  Grid.Column="1" Margin="242,40,378,422">
+            <Grid x:Name="gridwallandlayoutsinfo" Height="209" RenderTransformOrigin="0.579,0.492" Width="645">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Content="Muro" Foreground="white" Margin="60,17,227,58" Grid.Row="1"/>
+                <ComboBox Name="muros" Margin="115,18,326,62" Grid.Row="1"/>
+                <Label x:Name="lblName" Content="Nombre Layout" Foreground="white"  Grid.Row="1" Margin="8,62,299,12"/>
+                <TextBox x:Name="Nombre" HorizontalAlignment="Left" Margin="115,66,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="204" Height="25"/>
+                <TextBox x:Name="IdLayaout"  Visibility="Hidden" HorizontalAlignment="Left" Margin="286,13,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83" Height="18"/>
+                <Label Content="Fila"   Foreground="White" HorizontalAlignment="Left" Margin="78,2,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-4.277,2.735"/>
+                <TextBox x:Name="Filas" HorizontalAlignment="Left" Margin="114,2,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" Height="26"/>
+                <Label Content="Columna" Foreground="White" HorizontalAlignment="Left" Margin="157,2,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <TextBox x:Name="Columnas" HorizontalAlignment="Left" Margin="221,2,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" Height="26"/>
+                <Image HorizontalAlignment="Left" Height="41" Margin="10,14,0,0" Grid.Row="1" VerticalAlignment="Top" Width="30" Source="/Utilities/logoPol.png" RenderTransformOrigin="0.359,0.43"/>
+            </Grid>
+
+        </DockPanel>
+        <!-- End Panel de Muro y layout info -->
+    </Grid>
+
+
+
+
+</UserControl>
